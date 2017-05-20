@@ -1,0 +1,31 @@
+{
+  "extends": "tslint:recommended",
+	"rules": {
+		"no-unused-expression": true,
+		"no-duplicate-variable": true,
+		"no-duplicate-key": true,
+		"no-unused-variable": true,
+		"curly": true,
+		"class-name": true,
+		"triple-equals": true,
+    "trailing-comma": [ false ],
+    "no-console": [ false ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ]
+  }
+}

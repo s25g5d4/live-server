@@ -1,0 +1,46 @@
+{
+  "name": "live-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "./node_modules/.bin/nodemon bin/www",
+    "prd": "pm2 start bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "debug": "^2.6.3",
+    "ejs": "~2.3.3",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^1.2.1",
+    "koa-passport": "^3.0.0",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "mysql2": "^1.2.0",
+    "sequelize": "^3.30.4"
+  },
+  "devDependencies": {
+    "@types/debug": "0.0.29",
+    "@types/ejs": "^2.3.33",
+    "@types/koa": "^2.0.39",
+    "@types/koa-bodyparser": "^3.0.23",
+    "@types/koa-json": "^2.0.16",
+    "@types/koa-logger": "^2.0.2",
+    "@types/koa-passport": "^2.0.4",
+    "@types/koa-router": "^7.0.22",
+    "@types/koa-static": "^2.0.22",
+    "@types/koa-views": "^2.0.1",
+    "@types/sequelize": "^4.0.55",
+    "gulp": "^3.9.1",
+    "gulp-jsbeautifier": "^2.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.6",
+    "nodemon": "^1.8.1",
+    "typescript": "^2.3.2"
+  }
+}
