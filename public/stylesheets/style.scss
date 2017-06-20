@@ -1,8 +1,111 @@
+html {
+  height: 100%;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  padding-bottom: 40px;
+  min-height: 100%;
 }
 
 a {
   color: #00B7FF;
+}
+
+.navbar-avatar {
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+.navbar-username > a {
+  line-height: 50px !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+  vertical-align: middle;
+}
+
+.tos-checkbox, .submit-button {
+  text-align: left;
+}
+
+.profile-avatar,
+.profile-edit-avatar {
+  text-align: right;
+  height: 100px;
+}
+
+.profile-avatar > img,
+.profile-edit-avatar > img {
+  height: 100%;
+}
+
+.profile-nick > h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+  line-height: 100px;
+  vertical-align: middle;
+}
+
+.profile-nick,
+.profile-edit-nick {
+  height: 100px;
+  overflow: hidden;
+}
+
+.profile-edit-nick {
+  line-height: 100px;
+  vertical-align: middle;
+  padding-right: 23px;
+}
+
+.profile-edit-nick > input {
+  display: inline-block;
+  font-size: 30px;
+  height: 50px;
+  margin-top: 25px;
+}
+
+.profile-edit-label {
+  font-weight: normal;
+  line-height: 34px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.profile-edit-item {
+  margin-bottom: 0 !important;
+}
+
+.profile-edit-item > .glyphicon {
+  top: 1px !important;
+}
+
+.footer {
+  position: absolute;
+  height: 40px;
+  bottom: 0;
+  width: 100%;
+}
+
+.edit-hidden {
+  display: none;
+}
+
+#edit-email-input {
+  width: 90%;
+}
+
+#profile-password label {
+  width: 30%;
+  text-align: right;
+}
+
+#profile-password input {
+  width: 70%;
+}
+
+#edit-stream-profile-textarea {
+  width: 100%;
+  resize: vertical;
 }

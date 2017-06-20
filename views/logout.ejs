@@ -1,0 +1,23 @@
+<%- include('header.ejs'); %>
+<%- include('navbar.ejs'); %>
+<div class="container">
+  <div class="confirm-title col-sm-offset-1 col-sm-11">
+    <h1><%= model.confirm %></h1>
+  </div>
+  <div class="confirm-description col-sm-offset-1 col-sm-11">
+    <p><%= model.message %></p>
+  </div>
+  <div class="confirm-button col-sm-offset-1 col-sm-11">
+    <form method="POST" action="/logout">
+      <input type="submit" class="btn btn-primary" name="yes" id="yes" value="<%= model.buttonYes %>">
+      <% if (model.buttonNo) { -%>
+      <input type="submit" class="btn btn-default" name="no" id="no" value="<%= model.buttonNo %>">
+      <% } -%>
+      <% if (model.quit) { -%>
+        <a href="<%= model.quit.href %>" class=""><%= model.quit.description %></a>
+      <% } -%>
+      <input type="hidden" name="_csrf" value="<%= csrf %>">
+    </form>
+  </div>
+</div>
+<%- include('footer.ejs'); %>

@@ -1,21 +1,42 @@
 import * as Router from 'koa-router';
 
+import channel from './channel';
+import live from './live';
+import login from './login';
+import logout from './logout';
+import profile from './profile';
+import signup from './signup';
+
 const router = new Router();
 
-router.get('/', async (ctx) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  });
-});
+const getIndex = async (ctx) => {
+  await ctx.render('index', { });
+};
 
-router.get('/string', async (ctx) => {
-  ctx.body = 'koa2 string';
-});
+router.get('/', getIndex);
 
-router.get('/json', async (ctx) => {
-  ctx.body = {
-    title: 'koa2 json'
-  };
-});
+router
+  .use('/signup', signup.routes())
+  .use('/signup', signup.allowedMethods());
 
-export = router;
+router
+  .use('/login', login.routes())
+  .use('/login', login.allowedMethods());
+
+router
+  .use('/logout', logout.routes())
+  .use('/logout', logout.allowedMethods());
+
+router
+  .use('/profile', profile.routes())
+  .use('/profile', profile.allowedMethods());
+
+router
+  .use('/channel', channel.routes())
+  .use('/channel', channel.allowedMethods());
+
+router
+  .use('/live', live.routes())
+  .use('/live', live.allowedMethods());
+
+export default router;

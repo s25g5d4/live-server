@@ -1,0 +1,21 @@
+{
+  "site": {
+    "title": "My Live Streaming Server"
+  },
+  "session": {
+    "url": "redis://localhost:6379",
+    "keys": [ "vZb^%t2J6G]k_.!HwD8EW3\"}", "4l<$jZWFcOd3<2!))7P>XO=@" ]
+  },
+  "credentials": {
+    "pwkey": "TDgbZX35h7nYPbx9zByN0kOnIfeB/72s",
+    "tokenExpire": 60000
+  },
+  "database": {
+    "uri": "mysql://LiveServer:secret@localhost/LiveServer",
+    "options": {}
+  },
+  "hls": {
+    "dir": "/home/vagrant/hls/live",
+    "secret": "secret"
+  }
+}

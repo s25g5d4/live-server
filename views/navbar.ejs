@@ -1,0 +1,36 @@
+    <header role="banner" id="top" class="navbar navbar-static-top bs-docs-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><%= global.title %></a>
+        </div>
+        <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+          <ul class="nav navbar-nav">
+<% if (locals.user) { -%>
+            <li>
+              <a href="/channel">頻道</a>
+            </li>
+            <li>
+              <a href="/profile">個人檔案</a>
+            </li>
+            <li>
+              <a href="/logout">登出</a>
+            </li>
+<% } else { -%>
+            <li>
+              <a href="/signup">註冊</a>
+            </li>
+            <li>
+              <a href="/login">登入</a>
+            </li>
+<% } -%>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<% if (locals.user) { -%>
+            <li class="navbar-username"><a href="/profile"><img src="<%= locals.user.avatar %>?s=40" alt=""><%= locals.user.username %></a></li>
+<% } else { -%>
+            <li><a href="#">guest</a></li>
+<% } -%>
+          </ul>
+        </nav>
+      </div>
+    </header>

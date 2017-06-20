@@ -1,0 +1,98 @@
+<%- include('header.ejs'); %>
+<%- include('navbar.ejs'); %>
+    <div class="container">
+      <div class="profile-title col-sm-offset-1 col-sm-11">
+        <h1>個人檔案</h1>
+      </div>
+      <div class="profile-avatar col-sm-offset-1 col-sm-2">
+        <img src="<%= model.user.avatar %>" alt="avatar">
+      </div>
+      <div class="profile-nick col-sm-9">
+        <h2><%= model.user.username %></h2>
+      </div>
+      <div id="profile" class="profile-list col-md-offset-3 col-md-7">
+        <table class="table">
+<% if (model.user.email) { -%>
+          <tr>
+            <td><span id="profile-email-label">電子郵件</span></td>
+            <td><span id="profile-email" class="profile-data"><%= model.user.email %></span></td>
+          </tr>
+<% } -%>
+<% if (model.user.createdAt) { -%>
+          <tr>
+            <td><span id="profile-created-at-label">註冊日期</span></td>
+            <td><span id="profile-created-at" class="profile-data"><%= `${model.user.createdAt.getFullYear()} 年 ${model.user.createdAt.getMonth() + 1} 月 ${model.user.createdAt.getDate()} 日` %></span></td>
+          </tr>
+<% } -%>
+<% if (model.isSelf && model.user.active) { -%>
+          <tr>
+            <td><span id="profile-stream-key-label">串流金鑰</span></td>
+            <td>
+              <span id="profile-stream-key" class="profile-data">
+<%   if (model.user.streamKey) { -%>
+                <span id="toggle-stream-key"><a href="#" id="show-stream-key">顯示</a></span>
+<%   } else { -%>
+                <span id="edit-stream-key">進入編輯模式以產生金鑰</span>
+<%   } -%>
+              </span>
+            </td>
+          </tr>
+<% } -%>
+          <tr>
+            <td class="col-sm-4"><span id="profile-stream-profile-label">個人簡介</span></td>
+            <td class="col-sm-8"><span id="profile-stream-profile" class="profile-data"><%- model.user.profile %></span></td>
+          </tr>
+        </table>
+      </div>
+<% if (model.isSelf) { -%>
+<%   if (!model.user.active) { -%>
+      <div class="profile-not-active col-sm-offset-3 col-sm-9">
+        <p>您的帳號尚未啟用。<a href="#" id="active-account">點此啟用</a></p>
+        <form method="POST" id="active-account-form">
+          <input type="hidden" name="active" value="yes">
+          <input type="hidden" name="_csrf" value="<%= csrf %>">
+        </form>
+        <script>
+        $(function () {
+            $('#active-account').click(function onClick(event) {
+              // event.preventDefault();
+              // event.stopPropagation();
+              $('#active-account-form').submit();
+            });
+        });
+        </script>
+      </div>
+<%   } else { -%>
+      <form method="POST" id="update-profile-form">
+        <input type="hidden" name="_csrf" value="<%= csrf %>">
+      </form>
+      <div id="profile-button" class="col-sm-offset-3 col-sm-9">
+        <button id="edit" class="btn btn-default">編輯</button>
+      </div>
+      <script>
+        (function (window, document, $, undefined) {
+          var streamKey = window.streamKey = '<%= model.user.streamKey %>';
+          var hidden = true;
+          if (streamKey) {
+            var toggleStreamKey = $('#toggle-stream-key');
+            var showStreamKeyHTML = '<a href="#" id="hide-stream-key">隱藏</a> ' + streamKey;
+            var hideStreamKeyHTML = '<a href="#" id="show-stream-key">顯示</a>';
+
+            toggleStreamKey.on('click', '#show-stream-key', function onClick(event) {
+              var result = window.confirm('絕對不要與任何人分享您的串流金鑰，或在串流時出示金鑰！\n確定要檢視您的串流金鑰？');
+              if (result) {
+                toggleStreamKey.html(showStreamKeyHTML);
+              }
+            })
+
+            toggleStreamKey.on('click', '#hide-stream-key', function onClick(event) {
+              toggleStreamKey.html(hideStreamKeyHTML);
+            });
+          }
+        })(window, document, jQuery);
+      </script>
+      <script src="/public/javascripts/edit-profile.js"></script>
+<%   } -%>
+<% } -%>
+    </div>
+<%- include('footer.ejs'); %>

@@ -1,0 +1,21 @@
+<%- include('header.ejs'); %>
+<%- include('navbar.ejs'); %>
+    <div class="container">
+      <div class="success-title col-sm-offset-1 col-sm-11">
+        <h1><%= model.success %></h1>
+      </div>
+      <div class="success-description col-sm-offset-1 col-sm-11">
+        <p><%= model.message %></p>
+<% if (model.errors) { -%>
+<%   for (const error of Object.values(model.errors)) { -%>
+        <p><%= error %></p>
+<%   } -%>
+<% } -%>
+      </div>
+<% if (model.next) { -%>
+      <div class="success-button col-sm-offset-1 col-sm-11">
+        <a href="<%= model.next.href %>"><%= model.next.description %></a>
+      </div>
+<% } -%>
+    </div>
+<%- include('footer.ejs'); %>

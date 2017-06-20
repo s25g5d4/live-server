@@ -38,3 +38,7 @@ routes/**/*.js
 routes/**/*.map
 models/**/*.js
 models/**/*.map
+controllers/**/*.js
+controllers/**/*.map
+public/stylesheets/style.css
+.vscode

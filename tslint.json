@@ -1,6 +1,7 @@
 {
   "extends": "tslint:recommended",
 	"rules": {
+    "object-literal-sort-keys": false,
 		"no-unused-expression": true,
 		"no-duplicate-variable": true,
 		"no-duplicate-key": true,

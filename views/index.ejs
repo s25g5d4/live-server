@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>EJS Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('header.ejs'); %>
+<%- include('navbar.ejs'); %>
+    <div class="container">
+      <div class="col-sm-offset-1 col-sm-11">
+        <h1><%= site.title %></h1>
+      </div>
+      <div class="col-sm-offset-1 col-sm-11">
+        <p>Welcome to <%= site.title %></p>
+      </div>
+      <div class="col-sm-offset-1 col-sm-11">
+        <p>
+          <a href="/login" class="btn btn-default" role="button">登入</a>
+          <a href="/logout" class="btn btn-default" role="button">登出</a>
+          <a href="/signup" class="btn btn-default" role="button">註冊</a>
+          <a href="/profile" class="btn btn-default" role="button">個人頁面</a>
+        </p>
+      </div>
+    </div>
+<%- include('footer.ejs'); %>

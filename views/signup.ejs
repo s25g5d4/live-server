@@ -1,0 +1,68 @@
+<%- include('header.ejs'); %>
+<%- include('navbar.ejs'); %>
+    <div class="container">
+      <% if (model.errors) {
+           for (err of Object.values(model.errors)) { -%>
+      <div class="alert bg-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p><%= err %></p>
+        </div>
+      <%   }
+         } -%>
+      <form class="form-signup form-horizontal" role="form" method="POST">
+        <div class="form-login-title col-sm-offset-1 col-sm-11">
+          <h1>註冊</h1>
+        </div>
+        <div class="form-group col-sm-12<%= model.errors && model.errors.username ? ' has-error has-feedback' : '' %>">
+          <label class="control-label col-sm-2" for="name">帳號名稱</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="username" id="username" placeholder="User name" value="<%= model.username || '' %>" required autofocus>
+            <%if (model.errors && model.errors.username) { -%>
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <% } -%>
+          </div>
+        </div>
+        <div class="form-group col-sm-12<%= model.errors && model.errors.email ? ' has-error has-feedback' : '' %>">
+          <label class="control-label col-sm-2" for="email">電子郵件</label>
+          <div class="col-sm-4">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<%= model.email || '' %>" required>
+            <% if (model.errors && model.errors.email) { -%>
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <% } -%>
+          </div>
+        </div>
+        <div class="form-group col-sm-12<%= model.errors && model.errors.password ? ' has-error has-feedback' : '' %>">
+          <label class="control-label col-sm-2" for="password">密碼</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <%if (model.errors && model.errors.password) { -%>
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <% } -%>
+          </div>
+        </div>
+        <div class="form-group col-sm-12<%= model.errors && model.errors.password ? ' has-error has-feedback' : '' %>">
+          <label class="control-label col-sm-2" for="rePassword">重新輸入密碼</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="rePassword" id="rePassword" placeholder="Re-enter password" required>
+            <%if (model.errors && model.errors.password) { -%>
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <% } -%>
+          </div>
+        </div>
+        <div class="form-group col-sm-12<%= model.errors && model.errors.tos ? ' has-error has-feedback' : '' %>">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <input type="checkbox" name="tos" id="tos" value="agree"> <label class="control-label" for="tos">我已詳細閱讀並同意使用者條款。</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-12">
+          <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-lg btn-default" type="submit">Sign up</button>
+          </div>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrf %>">
+      </form>
+
+    </div>
+<%- include('footer.ejs'); %>

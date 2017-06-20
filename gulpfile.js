@@ -4,17 +4,19 @@ const ts = require('gulp-typescript');
 const beautify = require('gulp-jsbeautifier');
 const tsProject = ts.createProject('tsconfig.json');
 
+const tsSrc = [ '*.ts', 'public/**/*.ts', 'routes/**/*.ts', 'models/**/*.ts', 'controllers/**/*.ts' ];
+const sassSrc = [ 'public/**/*.scss' ];
 
 gulp.task('sass', function() {
   gulp
-    .src([ 'public/*.scss' ])
+    .src(sassSrc)
     .pipe(sass())
     .pipe( gulp.dest(f => f.base) );
 });
 
 gulp.task('typescript', function() {
   gulp
-    .src([ '*.ts', 'public/**/*.ts', 'routes/**/*.ts', 'models/**/*.ts' ])
+    .src(tsSrc)
     .pipe(tsProject())
     .pipe(beautify())
     .pipe( gulp.dest(f => f.base) );
@@ -23,6 +25,6 @@ gulp.task('typescript', function() {
 gulp.task('default', ['sass', 'typescript']);
 
 gulp.task('watch', [ 'default' ], function() {
-  gulp.watch('*.scss', ['sass']);
-  gulp.watch('*.ts', ['typescript']);
+  gulp.watch(sassSrc, ['sass']);
+  gulp.watch(tsSrc, ['typescript']);
 });
