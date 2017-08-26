@@ -56,8 +56,7 @@ const title = config.get('site.title');
 app.use(async (ctx, next) => {
   ctx.state.site = {
     title,
-    ip: ctx.request.ip.replace('::ffff:', ''),
-    hlsUrl: config.get('hls.url')
+    ip: ctx.request.ip.replace('::ffff:', '')
   };
   await next();
 });

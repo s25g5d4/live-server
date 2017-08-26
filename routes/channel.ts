@@ -4,6 +4,14 @@ import ChannelController from '../controllers/channel';
 
 const router = new Router();
 
+router.get('/', async (ctx, next) => {
+  if (ctx.isAuthenticated()) {
+    ctx.redirect('/channel/' + ctx.state.user.username);
+    return;
+  }
+  return next();
+});
+
 router.get('/:username', async (ctx) => {
   const model = ctx.state.model = await ChannelController.renderChannel(ctx);
 

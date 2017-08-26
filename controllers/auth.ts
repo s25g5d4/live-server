@@ -16,7 +16,7 @@ export interface IUser {
   nick: string;
   email: string;
   avatar: string;
-};
+}
 
 interface IUserAuth extends IUser {
   password: string;
@@ -58,7 +58,7 @@ export const initAuthStrategy = () => {
       });
 
       Object.assign(user, {
-        avatar: `http://www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`
+        avatar: `//www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`
       });
       return done(null, user);
     } catch (err) {
@@ -81,7 +81,7 @@ export const initAuthStrategy = () => {
 
         if ( checkPassword(user.password, password) ) {
           Object.assign(user, {
-            avatar: `http://www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`
+            avatar: `//www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`
           });
           user.password = null;
           done(null, user as IUser);

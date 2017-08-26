@@ -14,14 +14,14 @@ interface IUserProfile extends IUser {
   streamKey: string;
   profile: string;
   createdAt: Date;
-};
+}
 
 export interface IProfileModel extends IControllerModel {
   isSelf: boolean;
   user: Partial<IUserProfile>;
 }
 
-export interface IProfileErrorModel extends IControllerErrorModel {};
+export type IProfileErrorModel = IControllerErrorModel;
 
 export interface IProfileCheckModel extends IControllerModel {
   active?: boolean;
@@ -39,7 +39,7 @@ export interface IProfileCheckErrorModel extends IControllerErrorModel {
     password?: string;
     generateStreamKey?: string;
   };
-};
+}
 
 const getSelfProfile = async (ctx: IRouterContext): Promise<IProfileModel | IProfileErrorModel> => {
   if ( !ctx.isAuthenticated() ) {
@@ -153,7 +153,7 @@ const updateSelfProfileCheck = async (ctx: IRouterContext): Promise<IProfileChec
   const fieldsIsValid = checkFields(email, oldPassword, newPassword, rePassword, generateStreamKey, streamProfile);
 
   if ( !Object.values(fieldsIsValid).every((e) => e) ) {
-    const model: IProfileCheckErrorModel = {
+    const errorModel: IProfileCheckErrorModel = {
       status: 400,
       errors: {},
       error: 'Bad Request',
@@ -164,16 +164,16 @@ const updateSelfProfileCheck = async (ctx: IRouterContext): Promise<IProfileChec
       }
     };
     if (!fieldsIsValid.email) {
-      model.errors.email = 'Invalid email address.';
+      errorModel.errors.email = 'Invalid email address.';
     }
     if (!fieldsIsValid.password) {
-      model.errors.password = 'Invalid password.';
+      errorModel.errors.password = 'Invalid password.';
     }
     if (!fieldsIsValid.generateStreamKey) {
-      model.errors.generateStreamKey = 'Invalid value of generateStreamKey field.';
+      errorModel.errors.generateStreamKey = 'Invalid value of generateStreamKey field.';
     }
 
-    return model;
+    return errorModel;
   }
 
   if (!email && !oldPassword && !generateStreamKey && !streamProfile) {
@@ -379,7 +379,7 @@ const getUserProfile = async (ctx: IRouterContext): Promise<IProfileModel | IPro
     };
   }
 
-  user.avatar = `http://www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`;
+  user.avatar = `//www.gravatar.com/avatar/${createHash('md5').update(user.email).digest('hex')}.jpg`;
   user.email = null;
 
   return {
